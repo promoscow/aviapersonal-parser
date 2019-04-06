@@ -1,6 +1,7 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -19,13 +20,12 @@ import javax.persistence.Table;
 @SQLDelete(sql = "UPDATE resume SET active = 0 WHERE id = ?")
 @Where(clause = "active = 1")
 @Setter
+@ToString
 public class Resume extends AbstractEntity {
 
     private String title;
-    private String category;
-    private String specialization;
     private Integer experience;
-    private String name;
+    private Integer age;
     private Long salary;
 
     @Column(name = "title")
@@ -33,24 +33,14 @@ public class Resume extends AbstractEntity {
         return title;
     }
 
-    @Column(name = "category")
-    public String getCategory() {
-        return category;
-    }
-
-    @Column(name = "specialization")
-    public String getSpecialization() {
-        return specialization;
-    }
-
     @Column(name = "experience")
     public Integer getExperience() {
         return experience;
     }
 
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "age")
+    public Integer getAge() {
+        return age;
     }
 
     @Column(name = "salary")

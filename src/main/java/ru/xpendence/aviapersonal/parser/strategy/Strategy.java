@@ -2,6 +2,7 @@ package ru.xpendence.aviapersonal.parser.strategy;
 
 import ru.xpendence.aviapersonal.parser.entity.AbstractEntity;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,5 +13,5 @@ import java.util.List;
  */
 public interface Strategy<T extends AbstractEntity> {
 
-    List<T> parse();
+    List<T> parse() throws IOException;
 }

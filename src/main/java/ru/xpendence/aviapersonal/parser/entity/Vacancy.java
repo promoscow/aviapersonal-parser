@@ -1,5 +1,6 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
+import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -17,13 +18,12 @@ import javax.persistence.Table;
 @Table(name = "vacancy")
 @SQLDelete(sql = "UPDATE vacancy SET active = 0 WHERE id = ?")
 @Where(clause = "active = 1")
+@Setter
 public class Vacancy extends AbstractEntity {
 
     private String title;
-    private String category;
-    private String specialization;
-    private String experience;
-    private String name;
+    private String company;
+    private String city;
     private Long salary;
 
     @Column(name = "title")
@@ -31,49 +31,19 @@ public class Vacancy extends AbstractEntity {
         return title;
     }
 
-    @Column(name = "category")
-    public String getCategory() {
-        return category;
+    @Column(name = "company")
+    public String getCompany() {
+        return company;
     }
 
-    @Column(name = "specialization")
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    @Column(name = "experience")
-    public String getExperience() {
-        return experience;
-    }
-
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "city")
+    public String getCity() {
+        return city;
     }
 
     @Column(name = "salary")
     public Long getSalary() {
         return salary;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setSalary(Long salary) {
