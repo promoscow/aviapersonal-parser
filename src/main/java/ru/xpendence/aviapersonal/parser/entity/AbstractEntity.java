@@ -1,6 +1,6 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import ru.xpendence.aviapersonal.parser.attribute.ActiveType;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
  * e-mail: 2262288@gmail.com
  */
 @MappedSuperclass
+@Setter
 public abstract class AbstractEntity implements Serializable {
 
     private Long id;
     private LocalDateTime created;
     private LocalDateTime updated;
-    private ActiveType activeType = ActiveType.ENABLED;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +36,6 @@ public abstract class AbstractEntity implements Serializable {
         return updated;
     }
 
-    @Column(name = "active")
-    public ActiveType getActiveType() {
-        return activeType;
-    }
-
     @PrePersist
     public void toCreate() {
         this.created = LocalDateTime.now();
@@ -49,21 +44,5 @@ public abstract class AbstractEntity implements Serializable {
     @PreUpdate
     public void toUpdate() {
         this.updated = LocalDateTime.now();
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
-
-    public void setActiveType(ActiveType activeType) {
-        this.activeType = activeType;
     }
 }

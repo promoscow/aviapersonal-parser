@@ -1,8 +1,6 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
 import lombok.Setter;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +14,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
-@SQLDelete(sql = "UPDATE users SET active = 0 WHERE id = ?")
-@Where(clause = "active = 1")
 @Setter
 public class User extends AbstractEntity {
 
