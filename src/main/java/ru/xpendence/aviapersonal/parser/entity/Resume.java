@@ -18,12 +18,13 @@ import javax.persistence.Table;
 @Table(name = "resume")
 @SQLDelete(sql = "UPDATE resume SET active = 0 WHERE id = ?")
 @Where(clause = "active = 1")
+@Setter
 public class Resume extends AbstractEntity {
 
     private String title;
     private String category;
     private String specialization;
-    private String experience;
+    private Integer experience;
     private String name;
     private Long salary;
 
@@ -43,7 +44,7 @@ public class Resume extends AbstractEntity {
     }
 
     @Column(name = "experience")
-    public String getExperience() {
+    public Integer getExperience() {
         return experience;
     }
 
@@ -55,29 +56,5 @@ public class Resume extends AbstractEntity {
     @Column(name = "salary")
     public Long getSalary() {
         return salary;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSalary(Long salary) {
-        this.salary = salary;
     }
 }
