@@ -1,7 +1,7 @@
 package ru.xpendence.aviapersonal.parser.scheduler;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.xpendence.aviapersonal.parser.entity.EmployeeCount;
 import ru.xpendence.aviapersonal.parser.entity.Resume;
@@ -15,6 +15,7 @@ import ru.xpendence.aviapersonal.parser.strategy.VacancyStrategy;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Author: Vyacheslav Chernyshov
@@ -23,8 +24,8 @@ import java.util.List;
  * e-mail: 2262288@gmail.com
  */
 @Service
-@Slf4j
 public class SchedulerService {
+    private final static Logger log = Logger.getLogger(SchedulerService.class.getName());
 
     private final ResumeStrategy resumeStrategy;
     private final ResumeRepository resumeRepository;
@@ -56,18 +57,18 @@ public class SchedulerService {
             resumeRepository.deleteAll();
             resumeRepository.saveAll(resume);
         }
-        log.info("{} resume saved to database", resume.size());
+        log.info(String.format("%d resume saved to database", resume.size()));
     }
 
 //    @Scheduled(cron = "0 * * * * ?")
-//    @Scheduled(initialDelay = 5000, fixedDelay = 259200000)
+    @Scheduled(initialDelay = 5000, fixedDelay = 259200000)
     public void parseVacancy() {
         List<Vacancy> vacancies = vacancyStrategy.parse();
         if (!vacancies.isEmpty()) {
             vacancyRepository.deleteAll();
             vacancyRepository.saveAll(vacancies);
         }
-        log.info("{} vacancies saved to database", vacancies.size());
+        log.info(String.format("%d vacancies saved to database", vacancies.size()));
     }
 
 //    @Scheduled(initialDelay = 500, fixedDelay = 259200000)
@@ -77,6 +78,6 @@ public class SchedulerService {
             employeeCountRepository.deleteAll();
             employeeCountRepository.saveAll(employeeCountList);
         }
-        log.info("{} employee counts saved to database", employeeCountList.size());
+        log.info(String.format("%d employee counts saved to database", employeeCountList.size()));
     }
 }

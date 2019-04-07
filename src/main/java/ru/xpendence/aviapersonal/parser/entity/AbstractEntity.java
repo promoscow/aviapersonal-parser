@@ -1,7 +1,5 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,7 +11,6 @@ import java.time.LocalDateTime;
  * e-mail: 2262288@gmail.com
  */
 @MappedSuperclass
-@Setter
 public abstract class AbstractEntity implements Serializable {
 
     private Long id;
@@ -44,5 +41,17 @@ public abstract class AbstractEntity implements Serializable {
     @PreUpdate
     public void toUpdate() {
         this.updated = LocalDateTime.now();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 }

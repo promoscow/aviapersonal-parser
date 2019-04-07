@@ -1,7 +1,5 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,7 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "employee_salary")
-@Setter
 public class EmployeeSalary extends AbstractEntity {
 
     private String name;
@@ -40,5 +37,21 @@ public class EmployeeSalary extends AbstractEntity {
     @Column(name = "salary")
     public Double getSalary() {
         return salary;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFederalDistrict(String federalDistrict) {
+        this.federalDistrict = federalDistrict;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 }

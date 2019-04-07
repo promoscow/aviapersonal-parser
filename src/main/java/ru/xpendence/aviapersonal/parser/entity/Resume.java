@@ -1,8 +1,5 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,8 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "resume")
-@Setter
-@ToString
 public class Resume extends AbstractEntity {
 
     private String title;
@@ -42,5 +37,31 @@ public class Resume extends AbstractEntity {
     @Column(name = "salary")
     public Long getSalary() {
         return salary;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setSalary(Long salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "title='" + title + '\'' +
+                ", experience=" + experience +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
     }
 }

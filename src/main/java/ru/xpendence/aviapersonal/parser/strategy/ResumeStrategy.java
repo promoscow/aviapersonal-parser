@@ -1,6 +1,5 @@
 package ru.xpendence.aviapersonal.parser.strategy;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -21,8 +21,9 @@ import java.util.stream.Collectors;
  * e-mail: 2262288@gmail.com
  */
 @Service
-@Slf4j
 public class ResumeStrategy implements Strategy<Resume> {
+    private final static Logger log = Logger.getLogger(ResumeStrategy.class.getName());
+
     private static final String URL_FORMAT = "https://hh.ru/search/resume?text=%D0%9F%D0%B8%D0%BB%D0%BE%D1%82&logic=normal&pos=full_text&exp_period=all_time&specialization=21.12&specialization=21.403&specialization=21.402&relocation=living_or_relocation&salary_from=&salary_to=&currency_code=RUR&education=none&age_from=&age_to=&gender=unknown&order_by=relevance&search_period=0&items_on_page=20";
     private static final String USER_AGENT = "Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
     private static final String REFERRER = "none";
@@ -47,11 +48,11 @@ public class ResumeStrategy implements Strategy<Resume> {
                         resume.setAge(obtainAge(e));
                         resume.setExperience(obtainExperience(e));
                         resume.setSalary(obtainSalary(e));
-                        log.info("{}", resume.toString());
+                        log.info(String.format("%s", resume.toString()));
                         return resume;
                     }).collect(Collectors.toList()));
         }
-        log.info("Parsed {} resume", result.size());
+        log.info(String.format("Parsed %d resume", result.size()));
         return result;
     }
 

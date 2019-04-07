@@ -1,6 +1,5 @@
 package ru.xpendence.aviapersonal.parser.strategy;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -21,8 +21,9 @@ import java.util.stream.Collectors;
  * e-mail: 2262288@gmail.com
  */
 @Service
-@Slf4j
 public class VacancyStrategy implements Strategy<Vacancy> {
+    private final static Logger log = Logger.getLogger(VacancyStrategy.class.getName());
+
     private static final String URL_FORMAT = "https://hh.ru/search/vacancy?text=%D0%9F%D0%B8%D0%BB%D0%BE%D1%82&specialization=21.12&specialization=21.403&specialization=21.402&area=1&salary=&currency_code=RUR&experience=doesNotMatter&order_by=relevance&search_period=&items_on_page=20&no_magic=true";
     private static final String USER_AGENT = "Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
     private static final String REFERRER = "none";
@@ -57,7 +58,7 @@ public class VacancyStrategy implements Strategy<Vacancy> {
                 e.printStackTrace();
             }
         }
-        log.info("Vacancies parsed: {}", vacancies.size());
+        log.info(String.format("Vacancies parsed: %d", vacancies.size()));
         return vacancies;
     }
 

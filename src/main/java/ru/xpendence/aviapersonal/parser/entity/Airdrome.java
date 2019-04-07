@@ -1,7 +1,5 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,7 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "airdromes")
-@Setter
 public class Airdrome extends AbstractEntity {
 
     private String name;
@@ -40,5 +37,21 @@ public class Airdrome extends AbstractEntity {
     @Column(name = "grade")
     public String getGrade() {
         return grade;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCertificate(String certificate) {
+        this.certificate = certificate;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 }

@@ -1,10 +1,5 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -17,10 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "employee_count")
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class EmployeeCount extends AbstractEntity {
 
     private String federalDistrict;
@@ -28,6 +19,17 @@ public class EmployeeCount extends AbstractEntity {
     private Double value;
     private Integer year;
     private Boolean byDistrict;
+
+    public EmployeeCount() {
+    }
+
+    public EmployeeCount(String federalDistrict, String region, Double value, Integer year, Boolean byDistrict) {
+        this.federalDistrict = federalDistrict;
+        this.region = region;
+        this.value = value;
+        this.year = year;
+        this.byDistrict = byDistrict;
+    }
 
     public EmployeeCount(Integer year) {
         this.year = year;
@@ -56,5 +58,36 @@ public class EmployeeCount extends AbstractEntity {
     @Column(name = "by_district")
     public Boolean getByDistrict() {
         return byDistrict;
+    }
+
+    public void setFederalDistrict(String federalDistrict) {
+        this.federalDistrict = federalDistrict;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public void setByDistrict(Boolean byDistrict) {
+        this.byDistrict = byDistrict;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeCount{" +
+                "federalDistrict='" + federalDistrict + '\'' +
+                ", region='" + region + '\'' +
+                ", value=" + value +
+                ", year=" + year +
+                ", byDistrict=" + byDistrict +
+                '}';
     }
 }

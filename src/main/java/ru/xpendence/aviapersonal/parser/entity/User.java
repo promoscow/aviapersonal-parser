@@ -1,7 +1,5 @@
 package ru.xpendence.aviapersonal.parser.entity;
 
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,7 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
-@Setter
 public class User extends AbstractEntity {
 
     private String name;
@@ -28,5 +25,13 @@ public class User extends AbstractEntity {
     @Column(name = "password")
     public String getPassword() {
         return password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
